@@ -14,41 +14,41 @@ public class Test {
 
     @Test
     public void containsKey() {
-        map.put(1, "first");
+        map.put("first", 1);
         boolean expRes = true;
-        boolean res = map.containsKey(1);
+        boolean res = map.containsKey("first");
         assertEquals(expRes, res);
     }
 
     @Test
     public void containsNotKey() {
-        map.put(1, "first");
+        map.put("first", 1);
         boolean expRes = false;
-        boolean res = map.containsKey("3");
+        boolean res = map.containsKey("second");
         assertEquals(expRes, res);
     }
 
     @Test
     public void getValueKey() {
-        map.put(1, "first");
-        String expRes = "first";
-        String res = (String) map.get(1);
+        map.put("first", 1);
+        int expRes = 1;
+        int res = map.get("first");
         assertEquals(expRes, res);
     }
 
     @Test
     public void getValueNotKey() {
-        map.put(1, "first");
-        String expRes = null;
-        String res = (String) map.get(2);
+        map.put("first", 1);
+        int expRes = null;
+        int res = map.get("f");
         assertEquals(expRes, res);
     }
 
     @Test
     public void clear() {
-        map.put(1, "one");
-        map.put(3, "ttt");
-        map.put(7, "sdfghjk");
+        map.put("one", 1);
+        map.put("ttt", 3);
+        map.put("sdfghjk", 7);
 
         int expSize = 0;
         map.clear();
@@ -58,33 +58,33 @@ public class Test {
 
     @Test
     public void containsValue() {
-        map.put(1, "first");
+        map.put("first", 1);
         boolean expRes = true;
-        boolean res = map.containsValue("first");
+        boolean res = map.containsValue(1);
         assertEquals(expRes, res);
     }
 
     @Test
     public void containsInvalidValue() {
-        map.put(1, "hhhh");
+        map.put("hhhh", 1);
         boolean expRes = false;
-        boolean res = map.containsValue("tyyii");
+        boolean res = map.containsValue(6);
         assertEquals(expRes, res);
     }
 
     @Test
     public void putElement() {
-        map.put(1, "first");
-        String expRes = "first";
-        String res = (String) map.put(1, "second");
+        map.put("first", 1);
+        int expRes = 1;
+        int res = map.put("first", 2);
         assertEquals(expRes, res);
     }
 
     @Test
     public void removeElement() {
-        map.put(1, "first");
+        map.put("first", 1);
         int expSize = 0;
-        map.remove(1);
+        map.remove("first");
         int size = map.size();
         assertEquals(expSize, size);
     }

@@ -53,20 +53,27 @@ public class Tests {
 
     @Test
     public void mulOfBlockMatrix() {
-        double[][] md1 = {{1, 4, 3}, {2, 5, 7}, {7, 6, 9}, {1, 5, 9}};
-        double[][] md2 = {{2, 3, 5}, {2, 9, 1}, {9, 7, 3}, {5, 6, 8}};
-        double[][] md3 = new double[4][3];
-        for (int i = 0; i < md1.length; i++) {
-            for (int j = 0; j < md1[i].length; j++) {
-                md3[i][j] = md1[i][j] * md2[i][j];
+        int[][] m1 = {{1, 4, 3}, {2, 5, 7}, {7, 6, 9}, {1, 5, 9}};
+        int[][] m2 = {{2, 3, 5}, {2, 9, 1}, {9, 7, 3}, {5, 6, 8}};
+
+        int m = m1.length;
+        int n = m2[0].length;
+        int o = m2.length;
+        int[][] m3 = new int[m][n];
+        
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                for (int k = 0; k < o; k++) {
+                    m3[i][j] += m1[i][k] * m2[k][j]; 
+                }
             }
         }
 
-        RealMatrix m1 = new BlockRealMatrix(md1);
-        RealMatrix m2 = new BlockRealMatrix(md2);
-        RealMatrix res = new BlockRealMatrix(md3);
+        RealMatrix md1 = new BlockRealMatrix(m1);
+        RealMatrix md2 = new BlockRealMatrix(m2);
+        RealMatrix res = new BlockRealMatrix(m3);
 
-        assertEquals("Проверка умножения двух матриц", res, lab_1.mulMatrix(m1, m2));
+        assertEquals("Проверка умножения двух матриц", res, lab_1.mulMatrix(md1, md2));
 
     }
 }
